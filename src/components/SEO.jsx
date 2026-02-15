@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+
 
 const SITE_NAME = 'Free PDF Toolkit';
 const DEFAULT_TITLE = 'Free PDF Merger & Tools — No Login Required, Free for Life, Secure';
@@ -73,8 +73,9 @@ export const SEO = ({ title, description, keywords, path = '/' }) => {
     url: canonicalUrl,
   };
 
+
   return (
-    <Helmet>
+    <>
       <title>{finalTitle}</title>
       <meta name="description" content={finalDescription} />
       <meta name="keywords" content={finalKeywords} />
@@ -103,6 +104,6 @@ export const SEO = ({ title, description, keywords, path = '/' }) => {
       {webSiteSchema && (
         <script type="application/ld+json">{JSON.stringify(webSiteSchema)}</script>
       )}
-    </Helmet>
+    </>
   );
 };
