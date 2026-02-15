@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@hello-pangea/dnd": "^18.0.1",
+    "@vercel/analytics": "^1.6.1",
     "clsx": "^2.1.1",
     "docx": "^9.5.2",
     "file-saver": "^2.0.5",
