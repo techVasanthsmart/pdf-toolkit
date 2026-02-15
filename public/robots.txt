@@ -1,0 +1,6 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Replace the Sitemap URL with your production base URL before deploying.
+Sitemap: https://yoursite.com/sitemap.xml
