@@ -1,39 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Replace https://yoursite.com with your production base URL before deploying. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://yoursite.com/</loc>
-    <lastmod>2025-02-14</lastmod>
+    <loc>https://pdf-toolkit.vasanthubs.co.in/</loc>
+    <lastmod>2026-02-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://yoursite.com/merge</loc>
-    <lastmod>2025-02-14</lastmod>
+    <loc>https://pdf-toolkit.vasanthubs.co.in/merge</loc>
+    <lastmod>2026-02-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://yoursite.com/split</loc>
-    <lastmod>2025-02-14</lastmod>
+    <loc>https://pdf-toolkit.vasanthubs.co.in/split</loc>
+    <lastmod>2026-02-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://yoursite.com/reorder</loc>
-    <lastmod>2025-02-14</lastmod>
+    <loc>https://pdf-toolkit.vasanthubs.co.in/reorder</loc>
+    <lastmod>2026-02-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://yoursite.com/images-to-pdf</loc>
-    <lastmod>2025-02-14</lastmod>
+    <loc>https://pdf-toolkit.vasanthubs.co.in/images-to-pdf</loc>
+    <lastmod>2026-02-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://yoursite.com/markdown-to-pdf</loc>
-    <lastmod>2025-02-14</lastmod>
+    <loc>https://pdf-toolkit.vasanthubs.co.in/markdown-to-pdf</loc>
+    <lastmod>2026-02-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>

@@ -1,0 +1,19 @@
+{
+  "name": "PDF Toolkit — Free PDF Merger & Tools",
+  "short_name": "PDF Toolkit",
+  "description": "Merge, split, reorder PDFs and convert images or Markdown to PDF. 100% client-side, no login required, free forever.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["utilities", "productivity"]
+}
