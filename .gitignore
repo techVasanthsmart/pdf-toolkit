@@ -24,5 +24,4 @@ package-lock.json
 *.njsproj
 *.sln
 *.sw?
-*.md
 *.pdf
