@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   motion,
@@ -24,7 +24,6 @@ import { SEO } from "../components/SEO";
 import { getRouteByPath } from "../config/siteRoutes";
 
 const FeatureCard = ({ to, icon: Icon, title, desc, color }) => {
-  const ref = useRef(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -90,10 +89,18 @@ export default function Home() {
     const url = window.location.href;
     try {
       await navigator.clipboard.writeText(url);
-      const isMac = typeof navigator !== "undefined" && navigator.platform?.toUpperCase().includes("MAC");
-      setBookmarkMessage(isMac ? "Link copied! Press Cmd+D to bookmark in your browser." : "Link copied! Press Ctrl+D to bookmark in Chrome or your browser.");
+      const isMac =
+        typeof navigator !== "undefined" &&
+        navigator.platform?.toUpperCase().includes("MAC");
+      setBookmarkMessage(
+        isMac
+          ? "Link copied! Press Cmd+D to bookmark in your browser."
+          : "Link copied! Press Ctrl+D to bookmark in Chrome or your browser.",
+      );
     } catch {
-      setBookmarkMessage("Press Ctrl+D (or Cmd+D on Mac) to bookmark this page in your browser.");
+      setBookmarkMessage(
+        "Press Ctrl+D (or Cmd+D on Mac) to bookmark this page in your browser.",
+      );
     }
     setTimeout(() => setBookmarkMessage(null), 4000);
   };
@@ -177,7 +184,7 @@ export default function Home() {
             </Link>
 
             <a
-              href="https://github.com/techVasanthsmart"
+              href="https://github.com/techVasanthsmart/pdf-toolkit"
               target="_blank"
               rel="noreferrer"
               className="px-8 py-4 rounded-2xl bg-slate-900/60 backdrop-blur-xl shadow-md border border-white/10 text-white font-bold text-lg hover:bg-white/10 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
