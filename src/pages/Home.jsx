@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { flushSync } from "react-dom";
 import {
@@ -25,14 +25,11 @@ import {
   X,
 } from "lucide-react";
 import { gsap } from "gsap";
-import { Flip } from "gsap/Flip";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-import Lenis from "lenis";
+import { Flip } from "gsap/all";
 import { SEO } from "../components/SEO";
 import { getRouteByPath } from "../config/siteRoutes";
 
-gsap.registerPlugin(Flip, ScrollTrigger, useGSAP);
+gsap.registerPlugin(Flip);
 
 const TOOLS = [
   {
@@ -191,93 +188,6 @@ export default function Home() {
   const seoProps = getRouteByPath(location.pathname) ?? { path: "/" };
   const [bookmarkMessage, setBookmarkMessage] = useState(null);
   const [expandedId, setExpandedId] = useState(null);
-  
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: 'vertical',
-      gestureDirection: 'vertical',
-      smooth: true,
-      mouseMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
-      infinite: false,
-    });
-
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-    gsap.ticker.lagSmoothing(0);
-
-    return () => {
-      lenis.destroy();
-      gsap.ticker.remove(lenis.raf);
-    };
-  }, []);
-
-  useGSAP(() => {
-    const tl = gsap.timeline();
-    tl.fromTo(".hero-char", { y: 50, opacity: 0 }, {
-      y: 0,
-      opacity: 1,
-      duration: 0.8,
-      stagger: 0.1,
-      ease: "back.out(1.7)",
-      delay: 0.2
-    })
-    .fromTo(".hero-img-container", 
-      { scale: 1.2, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 0.8, ease: "power2.out" },
-      "-=0.4"
-    );
-
-    gsap.from(".feature-card", {
-      scrollTrigger: {
-        trigger: ".tools-grid",
-        start: "top 80%",
-        toggleActions: "play reverse play reverse",
-      },
-      y: 50,
-      opacity: 0,
-      stagger: 0.1,
-      duration: 0.6,
-      ease: "power2.out"
-    });
-
-    ScrollTrigger.create({
-      trigger: ".pinned-section",
-      start: "top top",
-      end: "bottom bottom",
-      pin: ".media-container"
-    });
-
-    const textMarkers = gsap.utils.toArray(".text-marker");
-    textMarkers.forEach((marker, i) => {
-      ScrollTrigger.create({
-        trigger: marker,
-        start: "top center",
-        end: "bottom center",
-        onEnter: () => gsap.to(`.feature-img-${i + 1}`, { opacity: 1, duration: 0.5, zIndex: 10 }),
-        onLeaveBack: () => gsap.to(`.feature-img-${i + 1}`, { opacity: 0, duration: 0.5, zIndex: 0 }),
-        onEnterBack: () => gsap.to(`.feature-img-${i + 1}`, { opacity: 1, duration: 0.5, zIndex: 10 }),
-        onLeave: () => { if(i < textMarkers.length - 1) gsap.to(`.feature-img-${i + 1}`, { opacity: 0, duration: 0.5, zIndex: 0 }) }
-      });
-    });
-  }, { scope: containerRef });
-
-  const splitTextToWords = (text) => text.split(" ").map((word, wordIdx) => (
-    <span key={wordIdx} className="inline-block whitespace-nowrap mr-4">
-      {word.split("").map((char, charIdx) => (
-        <span key={charIdx} className="inline-block hero-char opacity-0 bg-transparent text-white font-black" style={{ backgroundImage: "inherit", WebkitTextFillColor: "inherit", WebkitBackgroundClip: "inherit" }}>
-          {char === " " ? "\u00A0" : char}
-        </span>
-      ))}
-    </span>
-  ));
 
   const handleBookmark = async () => {
     const url = window.location.href;
@@ -324,7 +234,7 @@ export default function Home() {
   };
 
   return (
-    <div ref={containerRef}>
+    <>
       <SEO {...seoProps} />
 
       <div className="pt-10 pb-20 px-4 md:px-6">
@@ -342,21 +252,19 @@ export default function Home() {
             <span>v2.0 Now Available</span>
           </motion.div>
 
-          <h1 className="text-6xl md:text-8xl font-black mb-8 tracking-tighter">
-            <span className="flex flex-wrap justify-center text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 pb-2">
-              {splitTextToWords("Master Your")}
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ type: "spring", duration: 0.8 }}
+            className="text-6xl md:text-8xl font-black mb-8 tracking-tighter"
+          >
+            <span className="block text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 pb-2">
+              Master Your
             </span>
-            <span className="flex flex-wrap justify-center text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
-              {splitTextToWords("PDF Workflow")}
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
+              PDF Workflow
             </span>
-          </h1>
-          <div className="hero-img-container flex justify-center mt-12 mb-16">
-            <div className="relative w-48 h-48 sm:w-64 sm:h-64 rounded-full bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 shadow-[0_0_100px_rgba(139,92,246,0.5)] flex items-center justify-center p-1">
-               <div className="absolute inset-1 rounded-full bg-slate-900 flex items-center justify-center">
-                 <Merge size={80} className="text-white opacity-80" />
-               </div>
-            </div>
-          </div>
+          </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -440,7 +348,7 @@ export default function Home() {
         </section>
 
         {/* Tools Grid */}
-        <div className="tools-grid grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-32 max-w-6xl mx-auto relative z-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-32 max-w-6xl mx-auto relative z-20">
           {TOOLS.map((tool) => (
             <div key={tool.id} className="relative w-full h-[320px] sm:h-[300px]">
               <FeatureCard
@@ -465,42 +373,6 @@ export default function Home() {
             )}
           </AnimatePresence>
         </div>
-
-        {/* Pinned Scroll Section */}
-        <section className="pinned-section flex flex-col md:flex-row w-full max-w-6xl mx-auto py-20 md:py-32 relative gap-10">
-          <div className="w-full md:w-1/2 relative h-[400px] md:h-[600px] z-10">
-            <div className="media-container w-full h-[300px] md:h-[500px] rounded-3xl overflow-hidden bg-slate-900 border border-white/10 relative shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 z-0"></div>
-                <div className="feature-img-1 absolute inset-0 w-full h-full flex flex-col items-center justify-center bg-slate-800 opacity-100 p-8 z-10">
-                   <Merge size={120} className="text-indigo-400 mb-6 drop-shadow-lg" />
-                   <h3 className="text-2xl font-bold text-white">Merge Engine</h3>
-                </div>
-                <div className="feature-img-2 absolute inset-0 w-full h-full flex flex-col items-center justify-center bg-slate-800 opacity-0 p-8 z-0">
-                   <Scissors size={120} className="text-pink-400 mb-6 drop-shadow-lg" />
-                   <h3 className="text-2xl font-bold text-white">Precision Split</h3>
-                </div>
-                <div className="feature-img-3 absolute inset-0 w-full h-full flex flex-col items-center justify-center bg-slate-800 opacity-0 p-8 z-0">
-                   <Zap size={120} className="text-amber-400 mb-6 drop-shadow-lg" />
-                   <h3 className="text-2xl font-bold text-white">Instant Output</h3>
-                </div>
-            </div>
-          </div>
-          
-          <div className="w-full md:w-1/2 flex flex-col font-sans">
-             <div className="text-marker md:h-[600px] flex flex-col justify-center py-20">
-                 <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white leading-tight">Combine Documents Effortlessly</h2>
-                 <p className="text-slate-400 text-lg md:text-xl leading-relaxed">No need to upload your sensitive files anywhere. Combine as many PDFs as you want directly in your browser with our state-of-the-art secure engine.</p>
-             </div>
-             <div className="text-marker md:h-[600px] flex flex-col justify-center py-20">
-                 <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white leading-tight">Extract Just What You Need</h2>
-                 <p className="text-slate-400 text-lg md:text-xl leading-relaxed">Need just a few pages? Our split tool lets you define ranges or separate every single page into individual lightweight files securely and instantly.</p>
-             </div>
-             <div className="text-marker md:h-[600px] flex flex-col justify-center py-20 pb-40">
-                 <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white leading-tight">Lightning Fast Processing</h2>
-                 <p className="text-slate-400 text-lg md:text-xl leading-relaxed">Experience native-level performance within your web browser. Converting your markdown and managing your documents has never been faster.</p>
-             </div>
-          </div>
-        </section>
 
         {/* Stats / Trust */}
         <section className="border-t border-white/10 pt-20 max-w-6xl mx-auto">
@@ -537,6 +409,6 @@ export default function Home() {
           </div>
         </section>
       </div>
-    </div>
+    </>
   );
 }
