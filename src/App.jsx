@@ -7,6 +7,7 @@ import Splitter from './pages/Splitter';
 import Reorder from './pages/Reorder';
 import ImagesToPdf from './pages/ImagesToPdf';
 import MarkdownToPdf from './pages/MarkdownToPdf';
+import PdfToPpt from './pages/PdfToPpt';
 import { initAnalytics, trackPageView } from './analytics';
 import './index.css';
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="reorder" element={<Reorder />} />
         <Route path="images-to-pdf" element={<ImagesToPdf />} />
         <Route path="markdown-to-pdf" element={<MarkdownToPdf />} />
+        <Route path="pdf-to-ppt" element={<PdfToPpt />} />
       </Route>
     </Routes>
   );

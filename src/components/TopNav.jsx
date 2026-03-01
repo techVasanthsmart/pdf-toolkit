@@ -14,6 +14,7 @@ import {
   ListOrdered,
   Image as ImageIcon,
   FileCode,
+  Presentation,
 } from "lucide-react";
 import clsx from "clsx";
 
@@ -23,11 +24,12 @@ const PROFILE_IMAGE = "/svk.png";
 
 const navItems = [
   { path: "/", name: "Dashboard", icon: Box },
-  { path: "/merge", name: "Fusion Core", icon: Merge, desc: "Merge PDFs" },
-  { path: "/split", name: "Split PDF", icon: Scissors, desc: "Split by page" },
-  { path: "/reorder", name: "Reorder Pages", icon: ListOrdered, desc: "Reorder or remove" },
-  { path: "/images-to-pdf", name: "Images to PDF", icon: ImageIcon, desc: "Convert images" },
-  { path: "/markdown-to-pdf", name: "Markdown to PDF", icon: FileCode, desc: "Convert .md" },
+  { path: "/merge", name: "Merge", icon: Merge, desc: "Merge PDFs" },
+  { path: "/split", name: "Split", icon: Scissors, desc: "Split by page" },
+  { path: "/reorder", name: "Reorder", icon: ListOrdered, desc: "Reorder pages" },
+  { path: "/images-to-pdf", name: "Images", icon: ImageIcon, desc: "Convert images" },
+  { path: "/markdown-to-pdf", name: "Markdown", icon: FileCode, desc: "Convert .md" },
+  { path: "/pdf-to-ppt", name: "PPT", icon: Presentation, desc: "Convert to PPT" },
 ];
 
 export default function TopNav() {
@@ -54,13 +56,13 @@ export default function TopNav() {
             {/* Logo / Brand */}
             <Link
               to="/"
-              className="flex items-center gap-2.5 text-white font-bold tracking-tight focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded-lg transition-opacity hover:opacity-90"
+              className="group flex items-center gap-2.5 text-white font-bold tracking-tight focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 rounded-lg transition-opacity hover:opacity-100"
               aria-label="PDF Toolkit home"
             >
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shadow-lg shadow-indigo-500/25">
-                <Zap size={18} className="text-white fill-white" />
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-indigo-500/25 group-hover:shadow-pink-500/40 transition-shadow duration-300">
+                <Zap size={18} className="text-white fill-white group-hover:scale-110 transition-transform duration-300" />
               </div>
-              <span className="text-lg bg-clip-text text-transparent bg-gradient-to-r from-indigo-200 to-purple-200">
+              <span className="text-lg bg-clip-text text-transparent bg-gradient-to-r from-indigo-200 via-purple-200 to-pink-200 group-hover:from-indigo-100 group-hover:via-purple-100 group-hover:to-pink-100 transition-colors duration-300">
                 PDF Toolkit
               </span>
             </Link>

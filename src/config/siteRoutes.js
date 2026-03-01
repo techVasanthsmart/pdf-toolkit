@@ -43,6 +43,12 @@ export const siteRoutes = [
     description: 'Convert Markdown to PDF in your browser. Supports headings, code, lists, tables.',
     keywords: 'markdown to pdf, md to pdf, convert markdown pdf, markdown converter',
   },
+  {
+    path: '/pdf-to-ppt',
+    title: 'PDF to PowerPoint',
+    description: 'Convert any PDF to a PowerPoint presentation in your browser. Each page becomes a slide. Fully client-side, no upload required.',
+    keywords: 'pdf to ppt, pdf to powerpoint, convert pdf to pptx, pdf to presentation, pdf slides converter',
+  },
 ];
 
 /**

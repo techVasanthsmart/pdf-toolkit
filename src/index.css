@@ -2,18 +2,24 @@
 
 /* Outfit loaded via index.html Google Fonts link (css2?family=Outfit:wght@100..900) */
 
+@theme {
+  --font-display: "Space Mono", monospace;
+  --font-body: "Inter", sans-serif;
+  --font-code: "Fira Code", monospace;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "Fira Code", monospace;
+}
+
 @layer base {
   :root {
     color-scheme: dark;
+    --font-display: 'Space Mono', monospace;
+    --font-body: 'Inter', sans-serif;
+    --font-code: 'Fira Code', monospace;
   }
 
   body {
-    font-family:
-      "Outfit",
-      "Inter",
-      system-ui,
-      -apple-system,
-      sans-serif;
+    font-family: var(--font-body);
     background-color: #020617;
     background-image:
       radial-gradient(
